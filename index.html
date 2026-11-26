@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>OLUKE SKULL</title>
+</head>
+
+<body id="home">
+    <!-- CABEÇALHO E NAVEGAÇÃO -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home"><img src="assets/icon-pack/home.svg" alt="home"></a></li>
+                <li><a href="#loja"><img src="assets/icon-pack/shopping-bag.svg" alt="loja"></a></li>
+                <li><a href="#pesquisar"><img src="assets/icon-pack/search.svg" alt="pesquisar"></a></li>
+                <li><a href="#sobre"><img src="assets/icon-pack/info.svg" alt="sobre"></a></li>
+                <li><a href="#menu"><img src="assets/icon-pack/menu.svg" alt="menu"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SEÇÃO 1: APRESENTAÇÃO E PROJETOS -->
+    <section class="section1" id="secProjetos">
+        <!-- Camadas visuais de fundo (ficam aqui para serem cortadas pela section1 no mobile) -->
+        <img class="logotipo" src="assets/oluke.jpg" alt="Logo OLUKE">
+        <img class="galaxia" src="assets/Galaxia.jpg" alt="Galáxia">
+        <img class="estrelas" src="assets/Estrelas.jpg" alt="Estrelas">
+
+        <h1>OLUKE<br>SKULL</h1>
+
+        <div class="redes">
+            <a class="btn-esq" href="https://www.youtube.com/@OLUKE.F"><img src="assets/icon-pack/youtube.svg" alt="Youtube"></a>
+            <a href="https://www.instagram.com/oluke.skull/"><img src="assets/icon-pack/instagram.svg" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@oluke28"><img src="assets/icon-pack/tiktok.svg" alt="Tiktok"></a>
+            <a href="https://github.com/oluke0f-art"><img src="assets/icon-pack/github.svg" alt="Github"></a>
+            <a class="btn-dir" href="https://livepix.gg/oluke"><img src="assets/icon-pack/pix.svg" alt="Livepix"></a>
+        </div>
+
+        <div class="divCafé">
+            <a href="https://livepix.gg/oluke" class="cardcafé">
+                Me pague um café
+                <img src="assets/icon-pack/coffee.svg" alt="café">
+            </a>
+        </div>
+
+        <div class="divProjetos">
+            <a class="card1" href="https://github.com/oluke0f-art/StormVR/releases">
+                <img src="assets/icon-pack/vr-headset.svg" alt="StormVR">
+                <span>StormVR</span>
+                <p>Transforme seu celular em um VR, com ou sem PC</p>
+                <img class="externalLink" src="assets/icon-pack/external-link.svg" alt="Link">
+            </a>
+            <a class="card2" href="#home">
+                <img src="assets/icon-pack/smartphone.svg" alt="Janus">
+                <span>Janus</span>
+                <p>Um PORTE do Scrcpy para Android com interface amigavel e conexão facilitada</p>
+                <img class="externalLink" src="assets/icon-pack/external-link.svg" alt="Link">
+            </a>
+            <a class="card3" href="#home">
+                <img src="assets/icon-pack/wrench.svg" alt="Em Breve">
+                <span>Em Breve</span>
+                <img class="externalLink" src="assets/icon-pack/external-link.svg" alt="Link">
+            </a>
+            <a class="card4" href="#home">
+                <img src="assets/icon-pack/wrench.svg" alt="Em Breve">
+                <span>Em Breve</span>
+                <img class="externalLink" src="assets/icon-pack/external-link.svg" alt="Link">
+            </a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: LOJA DE AFILIADOS -->
+    <section class="section2" id="loja">
+        <div class="divCategorias">
+            <a href="#categorias" class="Categorias">
+                Categorias
+                <img src="assets/icon-pack/star.svg" alt="Categorias">
+            </a>
+        </div>
+
+        <div class="divTodososProdutos">
+            <a href="#loja" id="btnTodosProdutos" class="TodoosProdutos">
+                <span>Todos os Produtos</span>
+                <img src="assets/icon-pack/shopping-cart.svg" alt="Todos os Produtos">
+            </a>
+        </div>
+
+        <h1 id="tituloLoja">Destaques dos Achadinhos</h1>
+
+        <div class="gradeProdutos" id="gradeProdutos"></div>
+        <div id="sensorChunk"></div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="rodape" id="sobre">
+        <div class="rodape-conteudo">
+            <h2>OLUKE SKULL</h2>
+            <p>Projetos, hardware, experimentos e uns achadinhos dahora.</p>
+            <span class="rodape-copy">© 2026 OLUKE SKULL</span>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <!-- SCRIPTS -->
+    <script src="produtos.js"></script>
+    <script>
+        // Rolagem suave para âncoras internas (#)
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener("click", function (e) {
+                const id = this.getAttribute("href");
+                const destino = document.querySelector(id);
+                if (!destino) return;
+
+                e.preventDefault();
+
+                const posicaoFinal = id === "#home" ? 0 : destino.offsetTop;
+                const posicaoInicial = window.scrollY;
+                const distancia = posicaoFinal - posicaoInicial;
+                const duracao = 600;
+                let inicio = null;
+
+                function animarRolagem(tempoAtual) {
+                    if (!inicio) inicio = tempoAtual;
+                    const progresso = Math.min((tempoAtual - inicio) / duracao, 1);
+                    const suavizacao = progresso < 0.5
+                        ? 2 * progresso * progresso
+                        : 1 - Math.pow(-2 * progresso + 2, 2) / 2;
+
+                    window.scrollTo(0, posicaoInicial + distancia * suavizacao);
+
+                    if (progresso < 1) {
+                        requestAnimationFrame(animarRolagem);
+                    }
+                }
+
+                requestAnimationFrame(animarRolagem);
+            });
+        });
+
+        // Adapta estrutura para mobile:
+        // Ordem na section2: Título Projetos -> Projetos (2 colunas) -> Categorias -> Título Achadinhos -> Produtos (2 colunas)
+        (function adaptarLayoutMobile() {
+            const section1 = document.querySelector(".section1");
+            const section2 = document.querySelector(".section2");
+            const divProjetos = document.querySelector(".divProjetos");
+            const divCategorias = document.querySelector(".divCategorias");
+            const tituloAchadinhos = document.getElementById("tituloLoja");
+
+            if (!section1 || !section2 || !divProjetos || !divCategorias || !tituloAchadinhos) return;
+
+            let tituloProjetosMobile = document.getElementById("tituloProjetosMobile");
+            if (!tituloProjetosMobile) {
+                tituloProjetosMobile = document.createElement("h2");
+                tituloProjetosMobile.id = "tituloProjetosMobile";
+                tituloProjetosMobile.className = "titulo-projetos-mobile";
+                tituloProjetosMobile.textContent = "Conheça Meus Projetos!";
+            }
+
+            function aplicarFluxo() {
+                const isMobile = window.innerWidth <= 900;
+
+                if (isMobile) {
+                    if (tituloProjetosMobile.parentElement !== section2) {
+                        section2.insertBefore(tituloProjetosMobile, tituloAchadinhos);
+                    }
+                    if (divProjetos.parentElement !== section2) {
+                        section2.insertBefore(divProjetos, tituloAchadinhos);
+                    }
+                    if (divCategorias.nextElementSibling !== tituloAchadinhos) {
+                        section2.insertBefore(divCategorias, tituloAchadinhos);
+                    }
+                } else {
+                    if (divProjetos.parentElement !== section1) {
+                        section1.appendChild(divProjetos);
+                    }
+                    if (section2.firstElementChild !== divCategorias) {
+                        section2.insertBefore(divCategorias, section2.firstElementChild);
+                    }
+                    if (tituloProjetosMobile.parentElement) {
+                        tituloProjetosMobile.remove();
+                    }
+                }
+            }
+
+            aplicarFluxo();
+            window.addEventListener("resize", aplicarFluxo);
+        })();
+    </script>
+</body>
+
+</html>
